@@ -31,12 +31,12 @@ Before you begin, ensure you have met the following requirements:
 
 1. Clone the repository:
    ```
-   git clone //
+   git clone https://github.com/Ali-y-Suliman/product-catalogUI.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd //
+   cd product-catalogUI
    ```
 
 3. Install the dependencies:
