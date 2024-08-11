@@ -18,7 +18,7 @@ const ProductList: React.FC = () => {
   const { setAlert } = useAlert();
   const [validationError, setValidationError] = useState<string | undefined>();
   const [selectedCategory, setSelectedCategory] = useState<number | undefined>();
-  const [serchSelectedCategory, setSerchSelectedCategory] = useState<number | undefined>();
+  const [searchSelectedCategory, setSearchSelectedCategory] = useState<number | undefined>();
 
   const { 
     data: productsData, 
@@ -35,9 +35,9 @@ const ProductList: React.FC = () => {
   } = useApi(getCategories);
 
   const fetchProductsCallback = useCallback(() => {
-    fetchProducts(page, pageSize, selectedCategory, search);
+    fetchProducts(page, pageSize, searchSelectedCategory, startSearch);
     fetchCategories();
-  }, [fetchProducts, page, pageSize, serchSelectedCategory, startSearch]);
+  }, [fetchProducts, fetchCategories, page, pageSize, searchSelectedCategory, startSearch]);
 
   useEffect(() => {
     fetchProductsCallback();
@@ -65,7 +65,13 @@ const ProductList: React.FC = () => {
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const categoryId = event.target.value ? Number(event.target.value) : undefined;
     setSelectedCategory(categoryId);
+  };
+
+  const handleSearch = () => {
+    setStartSearch(search);
+    setSearchSelectedCategory(selectedCategory);
     setPage(1);
+    fetchProductsCallback();
   };
 
   if (productsLoading || categoriesLoading) return <LoadingSpinner />;
@@ -111,10 +117,7 @@ const ProductList: React.FC = () => {
                         </select>
                     </div>
                     <button 
-                        onClick={(e) => {
-                            setStartSearch(search);
-                            setSerchSelectedCategory(selectedCategory);
-                            }}
+                        onClick={handleSearch}
                         className="w-full sm:w-auto px-6 py-2 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                         Search
@@ -127,7 +130,7 @@ const ProductList: React.FC = () => {
                             key={product.id}
                             product={product}
                             categories={categoriesData?.items || []}
-                            refreshProducts={() => fetchProductsCallback()}
+                            refreshProducts={fetchProductsCallback}
                         />
                     ))}
                 </div>
