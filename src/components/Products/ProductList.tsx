@@ -53,6 +53,7 @@ const ProductList: React.FC = () => {
     try {
       await createProduct(product);
       setPage(1);
+      fetchProductsCallback();
       setValidationError(undefined);
       setAlert({ message: 'Product created successfully', type: 'success' });
     } catch (error: any) {
