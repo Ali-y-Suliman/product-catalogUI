@@ -1,46 +1,109 @@
-# Getting Started with Create React App
+# Product Catalog Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+
+This project is a comprehensive Product Catalog Management System built with React.js. It allows users to manage products and categories, providing features such as creating, updating, and deleting products and categories, as well as visualizing category data through interactive charts.
+
+## Features
+
+- Product management (CRUD operations)
+- Category management (CRUD operations)
+- Interactive dashboards with charts for category visualization
+- Responsive design for various screen sizes
+- Form validation for data integrity
+
+## Technologies Used
+
+- React.js
+- TypeScript
+- Tailwind CSS for styling
+- Recharts for data visualization
+- React Router for navigation
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js (v20.0.0 or later)
+- npm (v9.6.4 or later)
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone //
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd //
+   ```
+
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+
+## Running the Application
+
+To start the development server:
+
+```
+npm start
+```
+
+This runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+- `npm start`: Runs the app in development mode
+- `npm run build`: Builds the app for production
+- `npm run eject`: Ejects from Create React App (note: this is a one-way operation)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project Structure
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+src/
+├── components/
+│   ├── Categories/
+│   │   ├── CategoriesDashboard.tsx
+│   │   ├── CategoriesList.tsx
+│   │   ├── CategoryChart.tsx
+│   │   ├── CategoryForm.tsx
+│   │   └── CategoryItem.tsx
+│   ├── Products/
+│   │   ├── ProductList.tsx
+│   │   ├── ProductForm.tsx
+│   │   └── ProductItem.tsx
+│   ├── Common/
+|   │   ├── CreateModal.tsx
+|   │   ├── dropDownList.tsx
+│   │   ├── ErrorMessage.tsx
+│   │   ├── LoadingSpinner.tsx
+│   │   └── Pagination.tsx
+│   └── Layout/
+│       └── Layout.tsx
+├── contexts/
+│   └── AlertContext.tsx
+├── hooks/
+│   ├── useApi.ts
+│   └── usePagination.ts
+├── services/
+│   ├── api.ts
+│   ├── categoriesService.ts
+│   └── productsService.ts
+├── types/
+│   └── index.ts
+├── App.tsx
+└── index.tsx
+```
 
-### `npm test`
+## Configuration
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project uses environment variables for configuration. Create a `.env` file in the root directory and add the following:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+REACT_APP_API_URL= 'http://localhost:5296/api'
+```

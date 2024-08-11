@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import ProductList from './components/Products/ProductList';
+import { Layout } from './components/Layout/Layout';
+import { AlertProvider } from './contexts/AlertContext';
+import CategoriesDashboard from './components/Categories/CategoriesDashboard';
+import { CategoriesList } from './components/Categories/CategoriesList';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AlertProvider>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<CategoriesDashboard />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/categories" element={<CategoriesList />} />
+        </Routes>
+      </Layout>
+    </Router>
+  </AlertProvider>
   );
-}
+};
 
 export default App;
